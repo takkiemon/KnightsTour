@@ -1,0 +1,5 @@
+﻿  WarnsdorffKnightsTour.cpp
+c:\users\takki\onedrive\documenten\knightstour\warnsdorffknightstour\warnsdorffknightstour\knight.h(6): warning C4200: nonstandard extension used: zero-sized array in struct/union
+  c:\users\takki\onedrive\documenten\knightstour\warnsdorffknightstour\warnsdorffknightstour\knight.h(6): note: This member will be ignored by a defaulted constructor or copy/move assignment operator
+WarnsdorffKnightsTour.obj : error LNK2019: unresolved external symbol "public: __thiscall Board::Board(int)" (??0Board@@QAE@H@Z) referenced in function _main
+C:\Users\takki\OneDrive\Documenten\KnightsTour\WarnsdorffKnightsTour\Debug\WarnsdorffKnightsTour.exe : fatal error LNK1120: 1 unresolved externals
