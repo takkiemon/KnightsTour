@@ -1,3 +1,4 @@
+#include "pch.h"
 #include "Board.h"
 
 Board::Board(int size) {
@@ -9,8 +10,7 @@ Board::Board() {
 }
 
 void Board::Initialiseer(int size) {
-	boardGrid = int[size][size];
-	//boardGrid = int[boardSize][boardSize];
+	int* boardGrid = new int[size][size];
 	//fill board elements with the number 8, which will decrease everytime, when an adjacent move is taken.
 }
 

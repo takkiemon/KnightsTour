@@ -1,5 +1,12 @@
-﻿  WarnsdorffKnightsTour.cpp
-c:\users\takki\onedrive\documenten\knightstour\warnsdorffknightstour\warnsdorffknightstour\knight.h(6): warning C4200: nonstandard extension used: zero-sized array in struct/union
-  c:\users\takki\onedrive\documenten\knightstour\warnsdorffknightstour\warnsdorffknightstour\knight.h(6): note: This member will be ignored by a defaulted constructor or copy/move assignment operator
-WarnsdorffKnightsTour.obj : error LNK2019: unresolved external symbol "public: __thiscall Board::Board(int)" (??0Board@@QAE@H@Z) referenced in function _main
-C:\Users\takki\OneDrive\Documenten\KnightsTour\WarnsdorffKnightsTour\Debug\WarnsdorffKnightsTour.exe : fatal error LNK1120: 1 unresolved externals
+﻿  Board.cpp
+c:\users\takki\onedrive\documenten\knightstour\warnsdorffknightstour\warnsdorffknightstour\board.cpp(13): error C2540: non-constant expression as array bound
+c:\users\takki\onedrive\documenten\knightstour\warnsdorffknightstour\warnsdorffknightstour\board.cpp(13): error C2440: 'initializing': cannot convert from 'int (*)[1]' to 'int *'
+  c:\users\takki\onedrive\documenten\knightstour\warnsdorffknightstour\warnsdorffknightstour\board.cpp(13): note: Types pointed to are unrelated; conversion requires reinterpret_cast, C-style cast or function-style cast
+  Knight.cpp
+c:\users\takki\onedrive\documenten\knightstour\warnsdorffknightstour\warnsdorffknightstour\knight.h(8): warning C4200: nonstandard extension used: zero-sized array in struct/union
+  c:\users\takki\onedrive\documenten\knightstour\warnsdorffknightstour\warnsdorffknightstour\knight.h(8): note: This member will be ignored by a defaulted constructor or copy/move assignment operator
+c:\users\takki\onedrive\documenten\knightstour\warnsdorffknightstour\warnsdorffknightstour\knight.cpp(4): error C2600: 'Knight::Knight': cannot define a compiler-generated special member function (must be declared in the class first)
+  WarnsdorffKnightsTour.cpp
+c:\users\takki\onedrive\documenten\knightstour\warnsdorffknightstour\warnsdorffknightstour\knight.h(8): warning C4200: nonstandard extension used: zero-sized array in struct/union
+  c:\users\takki\onedrive\documenten\knightstour\warnsdorffknightstour\warnsdorffknightstour\knight.h(8): note: This member will be ignored by a defaulted constructor or copy/move assignment operator
+  Generating Code...
