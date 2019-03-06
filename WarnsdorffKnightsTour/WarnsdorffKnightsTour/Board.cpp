@@ -1,10 +1,14 @@
-#include "Board.h";
+#include "Board.h"
 
 Board::Board(int size) {
 	Initialiseer(size);
 }
 
-Board::Initialiseer(int size) {
+Board::Board() {
+	Initialiseer(6);
+}
+
+void Board::Initialiseer(int size) {
 	boardGrid = int[size][size];
 	//boardGrid = int[boardSize][boardSize];
 	//fill board elements with the number 8, which will decrease everytime, when an adjacent move is taken.

@@ -9,16 +9,15 @@
 
 using namespace std;
 
-Board chessBoard;
 Knight knight;
 
 int boardSize;
 
 int main()
 {
-    cout << "Hello World!\n"; 
+    cout << "boardSize: "; 
 	cin >> boardSize;
-	chessBoard = Board(boardSize);
+	Board chessBoard = Board(boardSize);
 	knight = Knight();
 
 	//create a loop, in which the board updates and moves the knight around according to warnsdorff algorithm and wait for player input to continue to next frame

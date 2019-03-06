@@ -8,5 +8,6 @@ private:
 
 public:
 	Board();
+	Board(int boardSize);
 	void Draw(/*int &boardSize*/);
 };
