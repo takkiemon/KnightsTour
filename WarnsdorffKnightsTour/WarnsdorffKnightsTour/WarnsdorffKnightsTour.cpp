@@ -15,9 +15,10 @@ int knightX, knightY;
 vector<int> availableMoves;
 vector<vector<int> > board;
 
-void InitBoard(int boardSize, vector<vector<int> >& board);
+void InitBoard(int boardSize, vector<vector<int> >& board, vector<int>& moves);
 void DrawBoard(int boardSize, vector<vector<int> >& board);
 void CheckAvailableMoves(int boardSize, vector<vector<int> >& board, vector<int>& moves, int& X, int& Y);
+void CheckAvailableMoves2(int boardSize, vector<vector<int> >& board, vector<int>& moves, int& X, int& Y);
 void MoveKnight(int boardSize, vector<vector<int> >& board, vector<int>& moves, int& X, int& Y);
 //void DecreaseAdjacentMoves(int boardSize, vector<vector<int> >& board, vector<int> moves, int& X, int& Y);
 
@@ -31,7 +32,7 @@ int main()
 	cout << "Y of Knight: ";
 	cin >> knightY;
 
-	InitBoard(boardSize, board);
+	InitBoard(boardSize, board, availableMoves);
 	board[knightX][knightY] = -2;
 
 	//create a loop, in which the board updates and moves the knight around according to warnsdorff algorithm and wait for player input to continue to next frame
@@ -53,13 +54,25 @@ int main()
 	//all adjacent move-spaces are lowered by one, except if they're -1
 }
 
-void InitBoard(int boardSize, vector<vector<int> >& boardGrid) {
+void InitBoard(int boardSize, vector<vector<int> >& boardGrid, vector<int>& moves) {
 	vector<int> v(0);
+	int tempI, tempJ;
 	for (int j = 0; j < boardSize; j++) {
 		for (int i = 0; i < boardSize; i++) {
-			v.push_back(8);
+			v.push_back(0);
 		}
 		boardGrid.push_back(v);
+	}
+	for (int j = 0; j < boardSize; j++) {
+		v.clear();
+		for (int i = 0; i < boardSize; i++) {
+			moves.clear();
+			tempI = i + 0;
+			tempJ = j + 0;
+			CheckAvailableMoves2(boardSize, boardGrid, moves, tempI, tempJ);
+			v.push_back(moves.size() / 2);
+		}
+		boardGrid[j] = v;
 	}
 }
 
@@ -67,7 +80,8 @@ void DrawBoard(int boardSize, vector<vector<int> >& boardGrid) {
 	for (int j = 0; j < boardSize; j++) {
 		for (int i = 0; i < boardSize; i++) {
 			if (boardGrid[i][j] >= 0) {
-				cout << boardGrid[i][j];
+				//cout << boardGrid[i][j];
+				cout << " ";
 			}
 			else if (boardGrid[i][j] == -2) {
 				cout << "K";
@@ -102,25 +116,64 @@ void CheckAvailableMoves(int boardSize, vector<vector<int> >& board, vector<int>
 		moves.push_back(kx + 1);
 		moves.push_back(ky + 2);
 	}
-	if (kx > 0 && ky < boardSize - 2 && board[kx + 1][ky - 2] >= 0) {
+	if (kx > 0 && ky < boardSize - 2 && board[kx - 1][ky + 2] >= 0) {
 		moves.push_back(kx - 1);
 		moves.push_back(ky + 2);
 	}
-	if (kx > 1 && ky < boardSize - 1 && board[kx + 1][ky - 2] >= 0) {
+	if (kx > 1 && ky < boardSize - 1 && board[kx - 2][ky + 1] >= 0) {
 		moves.push_back(kx - 2);
 		moves.push_back(ky + 1);
 	}
-	if (kx > 1 && ky > 0 && board[kx + 1][ky - 2] >= 0) {
+	if (kx > 1 && ky > 0 && board[kx - 2][ky - 1] >= 0) {
 		moves.push_back(kx - 2);
 		moves.push_back(ky - 1);
 	}
-	if (kx > 0 && ky > 1 && board[kx + 1][ky - 2] >= 0) {
+	if (kx > 0 && ky > 1 && board[kx - 1][ky - 2] >= 0) {
 		moves.push_back(kx - 1);
 		moves.push_back(ky - 2);
 	}
 
 	for (int i = 0; i < moves.size(); i += 2) {
-		board[moves[i]][moves[i + 1]]--;
+		if (board[moves[i]][moves[i + 1]] > 0) {
+			board[moves[i]][moves[i + 1]]--;
+		}
+	}
+}
+
+void CheckAvailableMoves2(int boardSize, vector<vector<int> >& board, vector<int>& moves, int& kx, int& ky) {//this function is just for the Init() to fill the board
+	moves.clear();
+	//going clock-wise
+	if (kx < boardSize - 1 && ky > 1) {
+		moves.push_back(kx + 1);
+		moves.push_back(ky - 2);
+	}
+	if (kx < boardSize - 2 && ky > 0) {
+		moves.push_back(kx + 2);
+		moves.push_back(ky - 1);
+	}
+	if (kx < boardSize - 2 && ky < boardSize - 1) {
+		moves.push_back(kx + 2);
+		moves.push_back(ky + 1);
+	}
+	if (kx < boardSize - 1 && ky < boardSize - 2) {
+		moves.push_back(kx + 1);
+		moves.push_back(ky + 2);
+	}
+	if (kx > 0 && ky < boardSize - 2) {
+		moves.push_back(kx - 1);
+		moves.push_back(ky + 2);
+	}
+	if (kx > 1 && ky < boardSize - 1) {
+		moves.push_back(kx - 2);
+		moves.push_back(ky + 1);
+	}
+	if (kx > 1 && ky > 0) {
+		moves.push_back(kx - 2);
+		moves.push_back(ky - 1);
+	}
+	if (kx > 0 && ky > 1) {
+		moves.push_back(kx - 1);
+		moves.push_back(ky - 2);
 	}
 }
 
@@ -130,8 +183,8 @@ void MoveKnight(int boardSize, vector<vector<int> >& board, vector<int>& moves, 
 	board[kx][ky] = -1; //previous spot will be visited
 
 	for (int i = 0; i < moves.size(); i += 2) {
-		cout << "board[" << moves[i] << "][" << moves[i + 1] << "] <= " << tempLowestNumber << " && board[" << moves[i] << "][moves[" << i + 1 << "]] > 0\n";
-		cout << "board[moves[i]][moves[i + 1]]: " << board[moves[i]][moves[i + 1]];
+		//cout << "board[" << moves[i] << "][" << moves[i + 1] << "] <= " << tempLowestNumber << " && board[" << moves[i] << "][moves[" << i + 1 << "]] > 0\n";
+		//cout << "board[moves[i]][moves[i + 1]]: " << board[moves[i]][moves[i + 1]];
 		if (board[moves[i]][moves[i + 1]] <= tempLowestNumber && board[moves[i]][moves[i + 1]] > 0) {
 			tempLowestNumber = board[moves[i]][moves[i + 1]];
 			kx = moves[i];
