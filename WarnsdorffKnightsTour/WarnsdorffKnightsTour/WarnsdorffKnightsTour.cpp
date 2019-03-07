@@ -11,7 +11,11 @@ using namespace std;
 
 int boardSize;
 int frameNumber;
-vector<string> board;
+vector<vector<int> > board;
+
+void InitBoard(int boardSize, vector<vector<int> > board);
+void DrawBoard(int boardSize, vector<vector<int> > board);
+
 
 int main()
 {
@@ -19,10 +23,12 @@ int main()
     cout << "boardSize: "; 
 	cin >> boardSize;
 
+	InitBoard(boardSize, board);
+
 	//create a loop, in which the board updates and moves the knight around according to warnsdorff algorithm and wait for player input to continue to next frame
 	for (int i = 0; i < boardSize * boardSize; i++) {
 		cout << " This is frame: " << frameNumber << "\n";
-
+		DrawBoard(boardSize, board);
 		cout << "press any key to go to next frame";
 		char input = _getch();//just to stall the 'animation'
 		frameNumber++;
@@ -34,6 +40,25 @@ int main()
 	//previous space now holds -1
 	//current space now holds -2
 	//all adjacent move-spaces are lowered by one, except if they're -1
+}
+
+void InitBoard(int boardSize, vector<vector<int> > boardGrid) {
+	vector<int> v(boardSize);
+	for (int j = 0; j < boardSize; j++) {
+		for (int i = 0; i < boardSize; i++) {
+			v.push_back(i * 10 + j);
+		}
+		boardGrid.push_back(v);
+	}
+}
+
+void DrawBoard(int boardSize, vector<vector<int> > boardGrid) {
+	for (int j = 0; j < boardSize; j++) {
+		for (int i = 0; i < boardSize; i++) {
+			cout << boardGrid[i][j];
+		}
+		cout << "\n";
+	}
 }
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu
