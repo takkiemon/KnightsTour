@@ -13,7 +13,7 @@ int boardSize;
 int frameNumber;
 vector<vector<int> > board;
 
-void InitBoard(int boardSize, vector<vector<int> > board);
+void InitBoard(int boardSize, vector<vector<int> >& board);
 void DrawBoard(int boardSize, vector<vector<int> > board);
 
 
@@ -42,10 +42,12 @@ int main()
 	//all adjacent move-spaces are lowered by one, except if they're -1
 }
 
-void InitBoard(int boardSize, vector<vector<int> > boardGrid) {
+void InitBoard(int boardSize, vector<vector<int> >& boardGrid) {
 	vector<int> v(boardSize);
+	cout << "test001\n";
 	for (int j = 0; j < boardSize; j++) {
 		for (int i = 0; i < boardSize; i++) {
+			cout << "test002 " << i << " " << j << "\n";
 			v.push_back(i * 10 + j);
 		}
 		boardGrid.push_back(v);
@@ -53,8 +55,10 @@ void InitBoard(int boardSize, vector<vector<int> > boardGrid) {
 }
 
 void DrawBoard(int boardSize, vector<vector<int> > boardGrid) {
+	cout << "test003\n";
 	for (int j = 0; j < boardSize; j++) {
 		for (int i = 0; i < boardSize; i++) {
+			cout << "test004 " << i << " " << j << "\n";
 			cout << boardGrid[i][j];
 		}
 		cout << "\n";
