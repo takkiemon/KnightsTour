@@ -3,28 +3,30 @@
 
 #include "pch.h"
 #include <iostream>
+#include <conio.h>
 #include <vector>
-#include "Board.h"
-#include "Knight.h"
 
 using namespace std;
 
-Knight knight;
 
 int boardSize;
+int frameNumber;
+vector<string> board;
 
 int main()
 {
+	frameNumber = 1;
     cout << "boardSize: "; 
 	cin >> boardSize;
-	Board chessBoard = Board(boardSize);
-	knight = Knight();
 
 	//create a loop, in which the board updates and moves the knight around according to warnsdorff algorithm and wait for player input to continue to next frame
-	/*for (int i = 0; i < boardSize * boardSize; i++) {
-		knight.MoveKnight();
-		chessBoard.Draw(/*boardSize*//*);
-	}*/
+	for (int i = 0; i < boardSize * boardSize; i++) {
+		cout << " This is frame: " << frameNumber << "\n";
+
+		cout << "press any key to go to next frame";
+		char input = _getch();//just to stall the 'animation'
+		frameNumber++;
+	}
 
 	//knight checks for available moves and the numbers they hold (don't check out of bounds)
 	//knight chooses a space with the lowest number above 0
