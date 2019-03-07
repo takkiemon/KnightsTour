@@ -11,25 +11,31 @@ using namespace std;
 
 int boardSize;
 int frameNumber;
+int knightX, knightY;
 vector<vector<int> > board;
 
 void InitBoard(int boardSize, vector<vector<int> >& board);
-void DrawBoard(int boardSize, vector<vector<int> > board);
-
+void DrawBoard(int boardSize, vector<vector<int> >& board);
+void MoveKnight(int boardSize, vector<vector<int> >& board);
 
 int main()
 {
 	frameNumber = 1;
     cout << "boardSize: "; 
 	cin >> boardSize;
+	cout << "X of Knight: ";
+	cin >> knightX;
+	cout << "Y of Knight: ";
+	cin >> knightY;
 
 	InitBoard(boardSize, board);
+	board[knightX][knightY] = -2;
 
 	//create a loop, in which the board updates and moves the knight around according to warnsdorff algorithm and wait for player input to continue to next frame
 	for (int i = 0; i < boardSize * boardSize; i++) {
 		cout << " This is frame: " << frameNumber << "\n";
 		DrawBoard(boardSize, board);
-		cout << "press any key to go to next frame";
+		cout << "press any key to go to next frame\n";
 		char input = _getch();//just to stall the 'animation'
 		frameNumber++;
 	}
@@ -43,26 +49,31 @@ int main()
 }
 
 void InitBoard(int boardSize, vector<vector<int> >& boardGrid) {
-	vector<int> v(boardSize);
-	cout << "test001\n";
+	vector<int> v(0);
 	for (int j = 0; j < boardSize; j++) {
 		for (int i = 0; i < boardSize; i++) {
-			cout << "test002 " << i << " " << j << "\n";
-			v.push_back(i * 10 + j);
+			v.push_back(8);
 		}
 		boardGrid.push_back(v);
 	}
 }
 
-void DrawBoard(int boardSize, vector<vector<int> > boardGrid) {
-	cout << "test003\n";
+void DrawBoard(int boardSize, vector<vector<int> >& boardGrid) {
 	for (int j = 0; j < boardSize; j++) {
 		for (int i = 0; i < boardSize; i++) {
-			cout << "test004 " << i << " " << j << "\n";
-			cout << boardGrid[i][j];
+			if (boardGrid[i][j] >= 0) {
+				cout << boardGrid[i][j];
+			}
+			else if (boardGrid[i][j] == -2) {
+				cout << "K";
+			}
 		}
 		cout << "\n";
 	}
+}
+
+void MoveKnight(int boardSize, vector<vector<int>>& board)
+{
 }
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu
