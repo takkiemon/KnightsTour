@@ -12,11 +12,14 @@ using namespace std;
 int boardSize;
 int frameNumber;
 int knightX, knightY;
+vector<int> availableMoves;
 vector<vector<int> > board;
 
 void InitBoard(int boardSize, vector<vector<int> >& board);
 void DrawBoard(int boardSize, vector<vector<int> >& board);
-void MoveKnight(int boardSize, vector<vector<int> >& board);
+void CheckAvailableMoves(int boardSize, vector<vector<int> >& board, vector<int> moves, int& X, int& Y);
+void MoveKnight(int boardSize, vector<vector<int> >& board, vector<int> moves, int& X, int& Y);
+void DecreaseAdjacentMoves(int boardSize, vector<vector<int> >& board, vector<int> moves, int& X, int& Y);
 
 int main()
 {
@@ -72,9 +75,59 @@ void DrawBoard(int boardSize, vector<vector<int> >& boardGrid) {
 	}
 }
 
-void MoveKnight(int boardSize, vector<vector<int>>& board)
-{
+void CheckAvailableMoves(int boardSize, vector<vector<int> >& board, vector<int> moves, int& kx, int& ky) {
+	moves.clear();
+	//going clock-wise
+	if (kx < boardSize - 1 && ky > 1 && board[kx + 1][ky - 2] >= 0) {
+		moves.push_back(kx + 1);
+		moves.push_back(ky - 2);
+	}
+	if (kx < boardSize - 2 && ky > 0 && board[kx + 2][ky - 1] >= 0) {
+		moves.push_back(kx + 2);
+		moves.push_back(ky - 1);
+	}
+	if (kx < boardSize - 2 && ky < boardSize - 1 && board[kx + 2][ky + 1] >= 0) {
+		moves.push_back(kx + 2);
+		moves.push_back(ky + 1);
+	}
+	if (kx < boardSize - 1 && ky < boardSize - 2 && board[kx + 1][ky + 2] >= 0) {
+		moves.push_back(kx + 1);
+		moves.push_back(ky + 2);
+	}
+	if (kx > 0 && ky < boardSize - 2 && board[kx + 1][ky - 2] >= 0) {
+		moves.push_back(kx - 1);
+		moves.push_back(ky + 2);
+	}
+	if (kx > 1 && ky < boardSize - 1 && board[kx + 1][ky - 2] >= 0) {
+		moves.push_back(kx - 2);
+		moves.push_back(ky + 1);
+	}
+	if (kx > 1 && ky > 0 && board[kx + 1][ky - 2] >= 0) {
+		moves.push_back(kx - 2);
+		moves.push_back(ky - 1);
+	}
+	if (kx > 0 && ky > 1 && board[kx + 1][ky - 2] >= 0) {
+		moves.push_back(kx - 1);
+		moves.push_back(ky - 2);
+	}
 }
+
+void MoveKnight(int boardSize, vector<vector<int> >& board, vector<int> moves, int& kx, int& ky)
+{
+	int tempLowestNumber;
+	int currentBestX;
+	int currentBestY;
+
+	for (int i = 0; i < moves.size(); i += 2) {
+
+	}
+}
+
+void DecreaseAdjacentMoves(int boardSize, vector<vector<int>>& board, vector<int> moves, int& kx, int& ky)
+{
+	
+}
+
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu
 // Debug program: F5 or Debug > Start Debugging menu
