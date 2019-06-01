@@ -6,6 +6,7 @@
 	class Knight : public SpriteRenderer
 	{
 	private:
+		int randomVariable;
 
 	public:
 		//override the Update function from SpriteRenderer
